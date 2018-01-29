@@ -1,0 +1,39 @@
+<?php $splittedUrl = explode("/", $_SERVER['REQUEST_URI']);?>
+<div id="find_players_main_div_wrap">
+	<div id="welcome-usr">
+		Welcome <span><?php echo $_SESSION['logged_user']['username']; ?></span>! | 
+		<a title="Click to change your account details" href="<?php echo $site_config['base_url'];?>pfagos/<?php echo (!$allow_pahro_access) ? "acc-edit" : "edit";?>/?pfagos_id=<?php echo $_SESSION['logged_user']['id'];?>">Account settings</a> |
+		<a title="Click to logout" href="<?php echo $site_config['base_url'];?>system/logout/">Log out</a>
+	</div>
+    <div id="find_players_main_div">
+		<script language="javascript" type="text/javascript">
+			$(document).ready(function(){
+			var data_user_fname = "<?php echo Configuration::grab_names_for_search_suggestions($splittedUrl[1], 'first_name');?>".split("|");
+				$("#first_name").autocomplete(data_user_fname);
+			});
+			$(document).ready(function(){
+			var data_user_lname = "<?php echo Configuration::grab_names_for_search_suggestions($splittedUrl[1], 'last_name');?>".split("|");
+				$("#surname").autocomplete(data_user_lname);
+			});
+        </script>
+        <div class="search_panel_line">
+            <div class="single_room s-find"><!-- --></div>
+            <div class="single_room boldText defaultFont">First Name</div>
+            <div class="single_room boldText defaultFont">Last name</div>
+            <div class="single_room"><!-- --></div>    
+        </div>
+        <div class="search_panel_line">
+            <div class="single_room s-find largeFont defaultFont">Find <?php echo Configuration::display_the_main_find_form_header($_SERVER['REQUEST_URI']);?></div>
+            <div class="single_room"><input type="text" id="first_name" name="first_name" 
+            							value="<?php echo (isset($_GET['fname'])) ? $_GET['fname'] : "";?>" class="inputs special_find_input" /></div>
+            <div class="single_room"><input type="text" id="surname" name="surname"  
+            							value="<?php echo (isset($_GET['sname'])) ? $_GET['sname'] : "";?>" class="inputs special_find_input" /></div>
+            <div class="single_room"><input type="button" name="find_player" value="Go" 
+            							class="inputs mainFindBtn" onclick="javascript:submit_the_search_query('<?php echo ($splittedUrl[1] != "") ? $splittedUrl[1] : "pfa_addbook";?>');" />
+                                        <input type="hidden" id="searchController" value="<?php echo ($splittedUrl[1] != "") ? $splittedUrl[1] : "pfa_addbook";?>" />
+            </div>                                                            
+										                                        
+        </div>                
+    </div>
+</div>
+<div class="clearingDiv"><!-- --></div>

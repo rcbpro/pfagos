@@ -1,0 +1,1 @@
+<div style="display:block;" align="center"><div class="defaultFont LargeFont specializedTexts" margin-top:75px; background-color:#3366FF; width:200px; height:200px;">Welcome to "Profootball Agency Admin Panel" Home Page.</div></div>

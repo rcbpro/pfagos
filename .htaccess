@@ -1,0 +1,25 @@
+RewriteEngine On
+RewriteRule !(\.gif|\.png|\.jpe?g|\.css|\.js|\.swf|\.wmv|\.avi|\.flv|\.jpg|\.rtf|\.pdf|\.doc|\.docx|\.php|^public/.*)$ index.php [nocase,last]
+#ErrorDocument 403 http://devel.admin.profootballagency.com/
+#ErrorDocument 502 http://devel.admin.profootballagency.com/
+#ErrorDocument 404 http://devel.admin.profootballagency.com/
+
+
+
+
+<IfModule mod_php5.c>
+	# default memory limit to 64Mb
+	php_value memory_limit 64M
+	
+	# to make sure register global is off
+	php_value register_globals 0
+	
+	# max post size to 800Mb
+	php_value post_max_size 838860800
+	
+	# upload size limit to 500Mb	
+	php_value upload_max_filesize 524288000
+	
+	# hide errors, enable only if debug enabled
+	php_value display_errors 0
+</IfModule>

@@ -1,0 +1,1 @@
+<?php include VIEW_PATH.'pfagos/add.php';?>

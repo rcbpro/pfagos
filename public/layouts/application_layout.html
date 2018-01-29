@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $site_config['title'];?></title>
+<link href="<?php echo $site_config['base_url'];?>public/css/main.css" type="text/css" rel="stylesheet" />
+<link rel="shortcut icon" href="<?php echo $site_config['base_url'];?>public/images/showimg.php.png" type="image/x-icon" /> 
+<script src="<?php echo $site_config['base_url'];?>public/js/jquery.js" language="javascript" type="text/javascript"></script>
+<script src="<?php echo $site_config['base_url'];?>public/js/common_js.php" language="javascript" type="text/javascript"></script>
+<script src="<?php echo $site_config['base_url'];?>public/js/jquery.autocomplete.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+	function set_dim(){
+		//width
+		var min_res = 960;
+		var left_w = $("#sidebarmenu_wrap").outerWidth(true) + 48 ;
+		$("#dataInputContainer_wrap").css("width",min_res -left_w);
+		$("#main_container").css("width",min_res);
+		
+		if($(window).width() > min_res){
+			var client_width = $(document).width() - left_w;
+			$("#dataInputContainer_wrap").width(client_width);
+			$("#main_container").css("width","100%");
+			//alert($(window).width());
+		}		
+		//height
+		var footer = 20;
+		var static_header = $("#static_header").outerHeight(true);
+		var pagi = $("#pagination_wrap").outerHeight();
+		var content_height = ($(window).height() - footer - pagi - static_header - 133);
+		$("#dataInputContainer_wrap").height(content_height);
+		$("#sidebarmenu_wrap").height($(window).height() - footer - 128);
+	}
+	
+	$(window).resize(function() {
+		set_dim();
+	});
+	set_dim();
+});
+</script> 
+</head>
+<body>
+	<div id="main_container">
+    	<!-- Start of the Header Div -->
+    	<div id="header_div">
+        	<a href="<?php echo $site_config['base_url'];?>"><div id="header_logo_div"><!-- --></div></a>
+	        <?php include 'main_find_form.html';?>            
+        </div>
+        <!-- End of the Header -->        
+        <!-- Start of the Left Menu Div -->
+        <?php include 'left_menu.html';?>        
+        <!-- End of the Left Menu Div -->
+        <!-- Start of the Conent Area -->
+        <div id="content_area">   
+        	<?php include $whichFileToInclude; ?>
+        </div>
+        <!-- End of the Conent Area -->
+	    <div class="clearingDiv"><!-- --></div>
+    </div>
+   
+</body>
+</html>
